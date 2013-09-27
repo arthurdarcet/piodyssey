@@ -46,6 +46,8 @@ run:
 shell:
 	@$(MANAGE_PY) shell
 
+scrap:
+	@$(MANAGE_PY) scrap --all
 
 .PHONY: run shell
 
