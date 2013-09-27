@@ -74,7 +74,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'standard': {
+        'simple': {
             'format': '{asctime} | {name:^12} | {levelname:^8} | {message}',
             'datefmt': '%Y-%m-%d %H:%M:%S',
             'style': '{',
@@ -86,6 +86,11 @@ LOGGING = {
         },
     },
     'handlers': {
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
         'mail_admins': {
             'class': 'django.utils.log.AdminEmailHandler',
             'level': 'ERROR',
@@ -97,6 +102,10 @@ LOGGING = {
         'root': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
+        },
+        'sunspear': {
+            'handlers': ['console'],
+            'level': 'INFO',
         },
     }
 }
