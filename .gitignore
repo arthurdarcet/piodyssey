@@ -1,0 +1,5 @@
+settings/personal.py
+media/
+*.py[oc]
+*.db
+.venv/
