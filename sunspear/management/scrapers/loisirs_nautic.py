@@ -5,6 +5,7 @@ from . import base_scraper
 
 class LoisirNauticScraper(base_scraper.BaseScraper):
     BASE_URL = 'http://www.loisirs-nautic.fr/'
+    SLUG = 'loisir-nautic'
 
     def categories(self):
         soup = self.soup('tests-permis-cotier.php')
@@ -43,5 +44,5 @@ class LoisirNauticScraper(base_scraper.BaseScraper):
             images = explanation.find_all('img')
             explanation_image = images[1]['src'] if len(images) > 1 else None
 
-            yield ((question_text, question_image), responses, solutions, (explanation_text, explanation_image))
+            yield (qid, question_text, question_image, responses, solutions, explanation_text, explanation_image)
 
