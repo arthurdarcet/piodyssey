@@ -5,7 +5,7 @@ from . import base_scraper
 
 class LoisirNauticScraper(base_scraper.BaseScraper):
     BASE_URL = 'http://www.loisirs-nautic.fr/'
-    SLUG = 'loisir-nautic'
+    SLUG = 'loisirs-nautic'
 
     def categories(self):
         soup = self.soup('tests-permis-cotier.php')

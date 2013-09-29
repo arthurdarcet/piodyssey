@@ -60,7 +60,7 @@ test:
 
 resetdb:
 	@rm -f local.db
-	@$(MANAGE_PY) syncdb --noinput
+	@$(MANAGE_PY) syncdb
 
 .PHONY: resetdb test
 
