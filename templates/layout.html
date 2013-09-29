@@ -8,15 +8,21 @@
         {% block css %}{% endblock %}
     </head>
     <body>
-        {% if messages %}
-            <ul class="messages">
+        <div class="container">
+            <div class="page-header">
+                <h1>Piodyssey</h1>
+            </div>
+            {% if messages %}
                 {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <div class="alert alert-dismissable alert-{% if message.tags %}{{ message.tags }}{% else %}danger{% endif %}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
+                    </div>
                 {% endfor %}
-            </ul>
-        {% endif %}
-        <div id="content">
-            {% block content %}{% endblock %}
+            {% endif %}
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

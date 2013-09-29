@@ -3,24 +3,18 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Email inconnu ou mot de passe invalide.
+    </div>
 {% endif %}
 
-<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
+<form method="post" class="megatron" action="{% url 'django.contrib.auth.views.login' %}">
+    <input type="text" name="username" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Login" class="btn btn-primary btn-lg" />
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% csrf_token %}
 </form>
 
 {% endblock %}
