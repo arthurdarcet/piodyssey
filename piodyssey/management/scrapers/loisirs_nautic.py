@@ -26,7 +26,7 @@ class LoisirNauticScraper(base_scraper.BaseScraper):
             soup = self.soup('pgm/affiche_correction.php?id=' + qid)
 
             question = soup.find(**{'class': 'quest'})
-            question_text = question.find('h6').text
+            question_text = question.find('h6').text.strip()
             img = question.find('img')
             question_image = img['src'] if img is not None else None
 
@@ -40,7 +40,7 @@ class LoisirNauticScraper(base_scraper.BaseScraper):
 
             explanation = soup.find(**{'class': 'gratuit'})
             p = explanation.find('p')
-            explanation_text = p.text[35:] if p is not None else None
+            explanation_text = p.text[35:].strip() if p is not None else None
             images = explanation.find_all('img')
             explanation_image = images[1]['src'] if len(images) > 1 else None
 

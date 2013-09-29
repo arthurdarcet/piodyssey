@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/html" id="tpl-question">
+        {% include "question.hogan" %}
+    </script>
+    <script>
+        Piodyssey.data = {{ questions }};
+        Piodyssey.Templates.question = Hogan.compile($('#tpl-question').html());
+        Piodyssey.app.start = function() {
+            Piodyssey.questions = new Backbone.Collection(Piodyssey.data, {
+                model: Piodyssey.Models.Question
+            });
+            Piodyssey.app.view = new Piodyssey.Views.Exam({
+                collection: Piodyssey.questions,
+                el: $('.content')
+            });
+        };
+    </script>
+{% endblock %}

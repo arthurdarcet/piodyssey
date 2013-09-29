@@ -7,9 +7,17 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('piodyssey.views',
+    url(r'^$', 'index'),
+    url(r'^random(?:/(?P<limit>[0-9]+))?$', 'random'),
+)
+
+urlpatterns += patterns('piodyssey.api',
+    url(r'api/save-session^$', 'save_session'),
+)
+
+urlpatterns += patterns('',
     (r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'piodyssey.views.index'),
     (r'^login$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     (r'^logout$', 'django.contrib.auth.views.logout', {'next_page': 'login'}),
 )
