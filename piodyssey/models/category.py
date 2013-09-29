@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 
 class Category(models.Model):
     class Meta:
-        app_label = 'sunspear'
+        app_label = 'piodyssey'
         verbose_name_plural = 'categories'
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='categories')

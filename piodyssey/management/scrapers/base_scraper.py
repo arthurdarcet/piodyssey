@@ -9,7 +9,7 @@ from django.core.files import File
 from ...models import Category, Question
 
 
-logger = logging.getLogger('sunspear.base_scraper')
+logger = logging.getLogger('piodyssey.base_scraper')
 
 class BaseScraper:
     BASE_URL = None

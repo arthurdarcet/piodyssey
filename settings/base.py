@@ -40,7 +40,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'sunspear.urls'
+ROOT_URLCONF = 'piodyssey.urls'
 WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (os.path.join(SRC_ROOT, 'templates'),)
@@ -63,17 +63,17 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'sunspear',
+    'piodyssey',
 )
 
-AUTH_USER_MODEL = 'sunspear.User'
+AUTH_USER_MODEL = 'piodyssey.User'
 LOGIN_URL = '/login'
 LOGIN_EXEMPT_URLS = ['password/request', 'password/do', 'static/']
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 SESSION_EXPIRE = 60*20
 
-EMAIL_SUBJECT_PREFIX = '[Sunspear admin] '
+EMAIL_SUBJECT_PREFIX = '[Piodyssey admin] '
 
 LOGGING = {
     'version': 1,
@@ -108,7 +108,7 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
         },
-        'sunspear': {
+        'piodyssey': {
             'handlers': ['console'],
             'level': 'INFO',
         },

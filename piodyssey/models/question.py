@@ -7,7 +7,7 @@ from . import Category
 
 class Question(models.Model):
     class Meta:
-        app_label = 'sunspear'
+        app_label = 'piodyssey'
         unique_together = (
             ('slug', 'scraper'),
         )

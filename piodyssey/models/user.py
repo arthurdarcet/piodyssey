@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     objects = UserManager()
     class Meta:
-        app_label = 'sunspear'
+        app_label = 'piodyssey'
 
     email = models.EmailField(unique=True, db_index=True)
     is_staff = models.BooleanField(default=False)

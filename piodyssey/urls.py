@@ -9,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'sunspear.views.index'),
+    url(r'^$', 'piodyssey.views.index'),
     (r'^login$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
 )
 
