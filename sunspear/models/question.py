@@ -1,16 +1,11 @@
 from django.db import models
 
-
-class Category(models.Model):
-    title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='categories')
-
-    def __str__(self):
-        return '{!r}'.format(self.title[:20])
+from . import Category
 
 
 class Question(models.Model):
     class Meta:
+        app_label = 'sunspear'
         unique_together = (
             ('slug', 'scraper'),
         )
