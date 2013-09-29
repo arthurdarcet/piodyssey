@@ -17,10 +17,8 @@ class JsonResponse(HttpResponse):
 
 def save_session(request):
     session = Session.objects.create(user=request.user)
-    print(request.POST)
     data = json.loads(request.POST.get('answers', '[]'))
     for question_pk, answer in data:
-        print(question_pk, answer)
         Answer.objects.create(
             question=Question.objects.get(pk=question_pk),
             answer=answer,
