@@ -17,8 +17,15 @@ form.megatron input:not([type=submit]) {
     padding: 0;
 }
 
-#question .panel {
-    padding: 20px 50px 0 50px;
+.header-right .pagination {
+    margin: 0;
+}
+
+.question-buttons button {
+    float: right;
+    clear: right;
+    display: block;
+    margin-bottom: 10px;
 }
 .response.active {
     background-color: #5bc0de !important;

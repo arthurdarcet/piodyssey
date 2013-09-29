@@ -1,10 +1,16 @@
 Piodyssey.Views.Exam = Backbone.View.extend({
     el: '.container',
     current_question_id: 0,
+    mode: 'exam',
+    finnished: false,
+    events: {
+        'click .action-change-mode': 'click_change_mode'
+    },
 
     initialize: function() {
         this.question = new Piodyssey.Views.Question({
             el: this.$('#exam'),
+            exam: this,
             next: _.bind(function() {
                 this.current_question_id++;
                 this.render();
@@ -23,9 +29,10 @@ Piodyssey.Views.Exam = Backbone.View.extend({
     },
 
     go_to_question: function(question) {
+        this.finnished = _.isNaN(this.current_question_id);
         if (question) {
             this.question.set_model(question);
-            this.question.render(_.isNaN(this.current_question_id));
+            this.question.render();
         }
         else {
             this.$('#exam').hide();
@@ -38,5 +45,14 @@ Piodyssey.Views.Exam = Backbone.View.extend({
                 this.$('#exam').show();
             }, this));
         }
+    },
+
+    click_change_mode: function(evt) {
+        var el = $(evt.currentTarget);
+        if (el.hasClass('active')) return;
+        this.mode = el.data('mode');
+        this.$('.action-change-mode').toggleClass('active');
+        this.render();
     }
+
 });

@@ -1,5 +1,12 @@
 {% extends "layout.html" %}
 
+{% block header %}
+    <ul class="pagination">
+        <li class="active action-change-mode" data-mode="exam"><a href="#">Condition réelles</a></li>
+        <li class="action-change-mode" data-mode="training"><a href="#">Entrainement</a></li>
+    </ul>
+{% endblock %}
+
 {% block content %}
     <div id="exam"></div>
     <div id="spinner" class="hide">

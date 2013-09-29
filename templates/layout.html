@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Piodyssey — {% block title %}{% endblock %}</title>
+        <title>Piodyssey</title>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="{% static "css/base.css" %}" rel="stylesheet">
         {% block css %}{% endblock %}
@@ -10,6 +10,9 @@
     <body>
         <div class="container">
             <div class="page-header">
+                <div class="pull-right header-right">
+                    {% block header %}{% endblock %}
+                </div>
                 <h1><a href="/">Piodyssey</a></h1>
             </div>
             {% if messages %}

@@ -10,15 +10,15 @@
         <div class="col-md-8">
             <ul class="list-group">
                 {{#responses}}
-                    <li class="list-group-item response {{#chosen}}active{{/chosen}} {{#finnished}}{{#right}}right{{/right}}{{/finnished}}" data-rid="{{key}}">
+                    <li class="list-group-item response {{#chosen}}active{{/chosen}} {{#correction}}{{#right}}right{{/right}}{{/correction}}" data-rid="{{key}}">
                         <span class="response-key">{{key}}</span>:
                         <span class="response-text">{{value}}</span>
                     </li>
                 {{/responses}}
             </ul>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2 next-question">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 question-buttons">
             <button type="button" class="btn btn-default action-next">
                 {{#finnished}}
                     Retourner aux résultats
@@ -27,6 +27,20 @@
                     Question suivante
                 {{/finnished}}
             </button>
+            {{#training}}{{^correction}}
+                <button type="button" class="btn btn-default action-correction">
+                    Correction
+                </button>
+            {{/correction}}{{/training}}
         </div>
     </div>
+    {{#correction}}
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            {{#explanation_image}}<img src="{{explanation_image}}" class="response-image pull-right">{{/explanation_image}}
+            <p>{{explanation}}</p>
+        </div>
+    </div>
+    {{/correction}}
 {% endverbatim %}
