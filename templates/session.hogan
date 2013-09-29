@@ -1,0 +1,12 @@
+{% verbatim %}
+    <div class="alert alert-{{success}} result-score">
+        <b>{{nb_errors}} fautes</b> / {{nb_questions}} questions
+    </div>
+    <div class="row results-row">
+        {{#answers}}
+            <div class="col-xs-1 alert-{{#is_right}}success __{{/is_right}}danger action-go-to-question" data-rid="{{question}}">
+
+            </div>
+        {{/answers}}
+    </div>
+{% endverbatim %}

@@ -1,21 +1,28 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div id="question"></div>
+    <div id="exam"></div>
+    <div id="spinner" class="hide">
+        <p>
+            <i class="glyphicon glyphicon-cloud-upload"></i><br>
+            Sauvegarde de vos résultats…
+        </p>
+    </div>
 {% endblock %}
 
 {% block js %}
     <script type="text/html" id="tpl-question">
         {% include "question.hogan" %}
     </script>
+    <script type="text/html" id="tpl-session">
+        {% include "session.hogan" %}
+    </script>
     <script>
         Piodyssey.data = {{ questions }};
         Piodyssey.Templates.question = Hogan.compile($('#tpl-question').html());
+        Piodyssey.Templates.session = Hogan.compile($('#tpl-session').html());
         Piodyssey.app.start = function() {
-            Piodyssey.questions = new Backbone.Collection(Piodyssey.data, {
-                model: Piodyssey.Models.Question,
-                parse: true
-            });
+            Piodyssey.questions = new Piodyssey.Collections.Questions(Piodyssey.data, {parse: true});
             Piodyssey.app.view = new Piodyssey.Views.Exam({collection: Piodyssey.questions});
             Piodyssey.app.view.render();
         };

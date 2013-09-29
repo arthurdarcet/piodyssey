@@ -12,11 +12,14 @@ class Session(models.Model):
     user = models.ForeignKey(User)
     date = models.DateTimeField(auto_now_add=True)
 
+    def get_absolute_url(self):
+        return reverse('api:session', args=[str(self.id)])
+
     def as_dict(self):
         return {
-            user: self.user.id,
-            date: self.date,
-            answers: [answer.as_dict() for answer in self.answers]
+            'user': self.user.id,
+            'date': str(self.date),
+            'answers': [answer.as_dict() for answer in self.answers.all()]
         }
 
 
@@ -26,17 +29,15 @@ class Answer(models.Model):
 
     question = models.ForeignKey(Question)
     answer = models.CharField(max_length=4)
-    session = models.ForeignKey(Session)
+    session = models.ForeignKey(Session, related_name='answers')
 
     @property
     def is_right(self):
         return self.question.solution == self.answer
 
-    def get_absolute_url(self):
-        return reverse('get-session', args=[str(self.id)])
-
     def as_dict(self):
         return {
-            question: self.question.id,
-            answer: self.answer
+            'question': self.question.id,
+            'answer': self.answer,
+            'is_right': self.is_right,
         }

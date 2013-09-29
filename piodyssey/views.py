@@ -13,11 +13,11 @@ def index(request):
     return render(request, 'index.html')
 
 @login_required
-def random(request, limit=35):
+def random(request, limit):
     return _render(request, Question.objects.order_by('?'), limit)
 
 def _render(request, questions, limit):
-    questions = [q.as_dict() for q in questions[:limit]]
+    questions = [q.as_dict() for q in questions[:int(limit or 35)]]
     return render(request, 'exam.html', {
         'questions': mark_safe(json.dumps(questions)),
     })

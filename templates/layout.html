@@ -10,7 +10,7 @@
     <body>
         <div class="container">
             <div class="page-header">
-                <h1>Piodyssey</h1>
+                <h1><a href="/">Piodyssey</a></h1>
             </div>
             {% if messages %}
                 {% for message in messages %}
@@ -29,6 +29,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/hogan.js/2.0.0/hogan.js"></script>
         <script>
             Piodyssey = {
+                Collections: {},
                 Models: {},
                 Views: {},
                 Templates: {},
@@ -41,7 +42,10 @@
             });
         </script>
         <script src="{% static "js/models/question.js" %}"></script>
+        <script src="{% static "js/models/session.js" %}"></script>
+        <script src="{% static "js/collections/questions.js" %}"></script>
         <script src="{% static "js/views/question.js" %}"></script>
+        <script src="{% static "js/views/session.js" %}"></script>
         <script src="{% static "js/views/exam.js" %}"></script>
         {% block js %}{% endblock %}
     </body>

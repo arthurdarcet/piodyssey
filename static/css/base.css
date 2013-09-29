@@ -20,3 +20,35 @@ form.megatron input:not([type=submit]) {
 #question .panel {
     padding: 20px 50px 0 50px;
 }
+#spinner {
+    text-align: center;
+    margin-top: 50px;
+}
+#spinner i {
+    font-size: x-large;
+    margin-bottom: 10px;
+}
+
+.results-row {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.results-row div {
+    border-radius: 4px;
+    margin: 5px;
+    border: 1px solid transparent;
+    width: 50px;
+    height: 50px;
+    padding: 13px 0 0 0;
+    text-align: center;
+    cursor: pointer;
+}
+.results-row .alert-success {
+    border-color: #d6e9c6;
+}
+.results-row .alert-danger {
+    border-color: #eed3d7;
+}
+.result-score {
+    font-size: larger;
+}

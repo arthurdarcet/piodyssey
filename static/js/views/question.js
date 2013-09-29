@@ -6,26 +6,26 @@ Piodyssey.Views.Question = Backbone.View.extend({
 
     set_model: function(model) {
         this.model = model;
-        this._answers = {};
+        this._answer = {};
     },
 
     render: function() {
         this.$el.html(Piodyssey.Templates.question.render(this.model.attributes));
     },
 
-    answers: function() {
-        var ans = this._answers;
+    answer: function() {
+        var ans = this._answer;
         return _.filter(_.keys(ans).sort(), function(k) { return ans[k]; }).join('');
     },
 
     click_next: function() {
-        this.model.set({answers: this.answers()});
+        this.model.set({answer: this.answer()});
         this.options.next();
     },
 
     click_response: function(evt) {
         var el = $(evt.currentTarget);
         el.toggleClass('active');
-        this._answers[el.data('rid')] = el.hasClass('active');
+        this._answer[el.data('rid')] = el.hasClass('active');
     }
 });

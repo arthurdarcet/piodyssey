@@ -45,13 +45,13 @@ class Question(models.Model):
 
     def as_dict(self):
         return {
-            'question': q.question,
-            'image': q.image.url if q.image else None,
-            'responses': q.responses,
-            'explanation':q.explanation,
-            'explanation_image': q.explanation_image.url if q.explanation_image else None,
-            'slug': q.slug,
-            'solution': q.solution,
+            'question': self.question,
+            'image': self.image.url if self.image else None,
+            'responses': self.responses,
+            'explanation': self.explanation,
+            'explanation_image': self.explanation_image.url if self.explanation_image else None,
+            'id': self.pk,
+            'solution': self.solution,
         }
 
 
