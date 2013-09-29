@@ -1,10 +1,11 @@
 import os
 
+SRC_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'local.db',
+        'NAME': os.path.join(SRC_ROOT, 'local.db'),
     }
 }
 
@@ -16,7 +17,6 @@ USE_I18N = False
 USE_L10N = True
 USE_TZ = True
 
-SRC_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 # static for our static files, media for user-uploaded pictures
 MEDIA_ROOT = os.path.join(SRC_ROOT, 'media')
 MEDIA_URL = '/media/'
