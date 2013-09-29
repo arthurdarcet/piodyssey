@@ -25,6 +25,10 @@ Piodyssey.Views.Exam = Backbone.View.extend({
     },
 
     render: function() {
+        if (this.current_question_id < this.collection.size())
+            this.$('.subtitle').html('Question ' + (this.current_question_id + 1) + ' sur ' + this.collection.size());
+        else
+            this.$('.subtitle').html('Résultats');
         this.go_to_question(this.collection.at(this.current_question_id));
     },
 

@@ -13,7 +13,10 @@
                 <div class="pull-right header-right">
                     {% block header %}{% endblock %}
                 </div>
-                <h1><a href="/">Piodyssey</a></h1>
+                <h1>
+                    <a href="/">Piodyssey</a>
+                    <small>{% block subtitle %}{% endblock %}</small>
+                </h1>
             </div>
             {% if messages %}
                 {% for message in messages %}

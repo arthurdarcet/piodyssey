@@ -17,6 +17,9 @@ form.megatron input:not([type=submit]) {
     padding: 0;
 }
 
+h1 small {
+    margin-left: 40px;
+}
 .header-right .pagination {
     margin: 0;
 }
