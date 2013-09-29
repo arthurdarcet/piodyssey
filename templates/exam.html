@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
+    <div id="question"></div>
 {% endblock %}
 
 {% block js %}
@@ -13,12 +13,11 @@
         Piodyssey.Templates.question = Hogan.compile($('#tpl-question').html());
         Piodyssey.app.start = function() {
             Piodyssey.questions = new Backbone.Collection(Piodyssey.data, {
-                model: Piodyssey.Models.Question
+                model: Piodyssey.Models.Question,
+                parse: true
             });
-            Piodyssey.app.view = new Piodyssey.Views.Exam({
-                collection: Piodyssey.questions,
-                el: $('.content')
-            });
+            Piodyssey.app.view = new Piodyssey.Views.Exam({collection: Piodyssey.questions});
+            Piodyssey.app.view.render();
         };
     </script>
 {% endblock %}

@@ -1,6 +1,22 @@
 {% verbatim %}
-<div>
-{{ this }}opeiu
-</div>
-
+    <div class="row">
+        <div class="col-md-12">
+            {{#image}}<img src="{{image}}" class="response-image pull-right">{{/image}}
+            <p>{{question}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="list-group">
+                {{#responses}}
+                    <li class="list-group-item response" data-rid="{{key}}"><span class="response-key">{{key}}</span>: <span class="response-text">{{value}}</span></li>
+                {{/responses}}
+            </ul>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2 next-question">
+            <button type="button" class="btn btn-default action-next">Question suivante</button>
+        </div>
+    </div>
 {% endverbatim %}
