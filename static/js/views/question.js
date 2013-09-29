@@ -9,8 +9,14 @@ Piodyssey.Views.Question = Backbone.View.extend({
         this._answer = {};
     },
 
-    render: function() {
-        this.$el.html(Piodyssey.Templates.question.render(this.model.attributes));
+    render: function(finnished) {
+        var data = this.model.attributes;
+        data.finnished = finnished;
+        _.each(data.responses, function(response) {
+            response.chosen = (data.answer || '').indexOf(response.key) >= 0;
+            response.right = data.solution.indexOf(response.key) >= 0;
+        });
+        this.$el.html(Piodyssey.Templates.question.render(data));
     },
 
     answer: function() {

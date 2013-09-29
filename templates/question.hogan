@@ -10,13 +10,23 @@
         <div class="col-md-8">
             <ul class="list-group">
                 {{#responses}}
-                    <li class="list-group-item response" data-rid="{{key}}"><span class="response-key">{{key}}</span>: <span class="response-text">{{value}}</span></li>
+                    <li class="list-group-item response {{#chosen}}active{{/chosen}} {{#finnished}}{{#right}}right{{/right}}{{/finnished}}" data-rid="{{key}}">
+                        <span class="response-key">{{key}}</span>:
+                        <span class="response-text">{{value}}</span>
+                    </li>
                 {{/responses}}
             </ul>
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-2 next-question">
-            <button type="button" class="btn btn-default action-next">Question suivante</button>
+            <button type="button" class="btn btn-default action-next">
+                {{#finnished}}
+                    Retourner aux résultats
+                {{/finnished}}
+                {{^finnished}}
+                    Question suivante
+                {{/finnished}}
+            </button>
         </div>
     </div>
 {% endverbatim %}

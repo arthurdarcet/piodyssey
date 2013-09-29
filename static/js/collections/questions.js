@@ -15,7 +15,7 @@ Piodyssey.Collections.Questions = Backbone.Collection.extend({
                 }))
             }
         ).done(_.bind(function(data) {
-            cb(new Piodyssey.Models.Session(data, {parse: true}));
+            cb(this._session = new Piodyssey.Models.Session(data, {parse: true}));
         }, this)).always(_.bind(function() {
             this._loading_session = false;
         }, this));

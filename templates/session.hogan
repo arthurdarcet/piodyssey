@@ -4,7 +4,7 @@
     </div>
     <div class="row results-row">
         {{#answers}}
-            <div class="col-xs-1 alert-{{#is_right}}success __{{/is_right}}danger action-go-to-question" data-rid="{{question}}">
+            <div class="col-xs-1 alert-{{#is_right}}success __{{/is_right}}danger action-go-to-question" data-qid="{{question}}">
 
             </div>
         {{/answers}}

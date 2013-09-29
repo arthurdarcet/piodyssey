@@ -20,6 +20,14 @@ form.megatron input:not([type=submit]) {
 #question .panel {
     padding: 20px 50px 0 50px;
 }
+.response.active {
+    background-color: #5bc0de !important;
+    border-color: #4cbbd9 !important;
+}
+.response.right {
+    font-weight: bold;
+}
+
 #spinner {
     text-align: center;
     margin-top: 50px;
