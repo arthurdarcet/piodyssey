@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'sunspear',
 )
 
+AUTH_USER_MODEL = 'sunspear.User'
 LOGIN_URL = '/login'
 LOGIN_EXEMPT_URLS = ['password/request', 'password/do', 'static/']
 LOGIN_REDIRECT_URL = '/'

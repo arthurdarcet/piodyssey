@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib import admin
+from django.contrib.auth.models import Group
 
 from . import Category
 
@@ -41,3 +43,12 @@ class Question(models.Model):
 
     def __str__(self):
         return '{!r} {!r} in {} from {!r}'.format(self.slug, self.question[:20], self.category, self.scraper)
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('slug', 'question', 'category', 'scraper')
+    list_filter = ('category', 'scraper')
+    search_fields = ('question', '_responseA', '_responseB', '_responseC', '_responseD')
+    ordering = ('scraper', 'category', 'slug')
+admin.site.register(Question, QuestionAdmin)
+
