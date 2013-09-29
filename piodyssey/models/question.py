@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib import admin
-from django.contrib.auth.models import Group
 
 from . import Category
 
@@ -43,6 +42,17 @@ class Question(models.Model):
 
     def __str__(self):
         return '{!r} {!r} in {} from {!r}'.format(self.slug, self.question[:20], self.category, self.scraper)
+
+    def as_dict(self):
+        return {
+            'question': q.question,
+            'image': q.image.url if q.image else None,
+            'responses': q.responses,
+            'explanation':q.explanation,
+            'explanation_image': q.explanation_image.url if q.explanation_image else None,
+            'slug': q.slug,
+            'solution': q.solution,
+        }
 
 
 class QuestionAdmin(admin.ModelAdmin):

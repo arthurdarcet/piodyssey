@@ -3,11 +3,9 @@ from django.db import models
 
 from django.contrib import admin
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as DjUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-
 
 
 class UserManager(BaseUserManager):

@@ -17,16 +17,7 @@ def random(request, limit=35):
     return _render(request, Question.objects.order_by('?'), limit)
 
 def _render(request, questions, limit):
-    questions = [
-    {
-        'question': q.question,
-        'image': q.image.url if q.image else None,
-        'responses': q.responses,
-        'explanation':q.explanation,
-        'explanation_image': q.explanation_image.url if q.explanation_image else None,
-        'slug': q.slug,
-        'solution': q.solution,
-    } for q in questions[:limit]]
+    questions = [q.as_dict() for q in questions[:limit]]
     return render(request, 'exam.html', {
         'questions': mark_safe(json.dumps(questions)),
     })
