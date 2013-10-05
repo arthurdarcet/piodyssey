@@ -42,10 +42,13 @@ class User(AbstractBaseUser):
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=80)
+    team = models.CharField(max_length=50)
     date_of_birth = models.DateField(null=True)
     phone = models.CharField(max_length=15, null=True)
-    parent_email = models.TextField(null=True)
-    parent_phone = models.CharField(max_length=50, null=True)
+    facebook = models.CharField(max_length=50, null=True)
+    contact_method = models.CharField(max_length=100, null=True)
+    parents_email = models.TextField(null=True)
+    parents_phone = models.CharField(max_length=50, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -101,12 +104,12 @@ class UserAdmin(DjUserAdmin):
     form = UserChangeForm
     add_form = UserChangeForm
 
-    list_display = ('email', 'first_name', 'last_name', 'is_staff')
+    list_display = ('email', 'first_name', 'last_name', 'team', 'is_staff')
     list_filter = ('is_staff',)
     fieldsets = (
         (None, {'fields': ('email', 'password', 'password1', 'password2')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'date_of_birth', 'phone')}),
-        ('Parents', {'fields': ('parent_phone', 'parent_email')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'team', 'date_of_birth', 'phone', 'facebook', 'contact_method')}),
+        ('Parents', {'fields': ('parents_phone', 'parents_email')}),
         ('Permissions', {'fields': ('is_staff',)}),
         ('Important dates', {'fields': ('last_login',)}),
     )
