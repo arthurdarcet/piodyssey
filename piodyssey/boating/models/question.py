@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 
 from . import Category
 
@@ -53,12 +52,3 @@ class Question(models.Model):
             'id': self.pk,
             'solution': self.solution,
         }
-
-
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('slug', 'question', 'category', 'scraper')
-    list_filter = ('category', 'scraper')
-    search_fields = ('question', '_responseA', '_responseB', '_responseC', '_responseD')
-    ordering = ('scraper', 'category', 'slug')
-admin.site.register(Question, QuestionAdmin)
-

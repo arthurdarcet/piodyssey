@@ -7,7 +7,7 @@ from .models import User
 
 
 @login_required
-def list(request):
+def users_list(request):
     return render(request, 'users/list.html', {
         'users': User.objects.all(),
     })
@@ -24,7 +24,7 @@ def send_mail(request, target):
     if target == 'parents' or target == 'all':
         emails += [user.parents_email for user in User.objects.all()]
 
-    emails = ', '.join(emails)
+    emails = ', '.join(filter(lambda x: x is not None, emails))
 
     success = error = None
     if request.method == 'POST':

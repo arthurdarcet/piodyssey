@@ -2,7 +2,7 @@ from django.conf.urls import include, patterns, url
 
 
 urlpatterns = patterns('piodyssey.users.views',
-    url(r'^users/list$', 'list', name='list'),
+    url(r'^users/list$', 'users_list', name='list'),
     url(r'^users/email(?:/(?P<target>parents|pionniers|all))?$', 'send_mail', name='send-email'),
 )
 

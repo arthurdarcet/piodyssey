@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 
 
 class Category(models.Model):
@@ -12,8 +11,3 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-
-class CategoryAdmin(admin.ModelAdmin):
-    pass
-
-admin.site.register(Category, CategoryAdmin)

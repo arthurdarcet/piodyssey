@@ -1,8 +1,6 @@
 from django.core.urlresolvers import reverse
-from django.contrib import admin
+from django.conf import settings
 from django.db import models
-
-from piodyssey.users.models import User
 
 from .category import Category
 from .question import Question
@@ -12,7 +10,7 @@ class Session(models.Model):
     class Meta:
         app_label = 'boating'
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     category = models.ForeignKey(Category, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -72,17 +70,3 @@ class Answer(models.Model):
 
     def __str__(self):
         return '{} ({}), {}'.format(self.answer, 'Right' if self.is_right else 'Wrong', self.question)
-
-
-class AnswerAdminInline(admin.StackedInline):
-    model = Answer
-    template = 'admin/inline-answers.html'
-    extra = 0
-
-
-class SessionAdmin(admin.ModelAdmin):
-    list_display = ('user', 'category', 'created_at')
-    inlines = (AnswerAdminInline, )
-
-
-admin.site.register(Session, SessionAdmin)
