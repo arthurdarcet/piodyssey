@@ -1,7 +1,8 @@
 import bs4
+import io
 import logging
 import os.path
-import urllib.request
+import requests
 import uuid
 
 from django.core.files import File
@@ -9,11 +10,14 @@ from django.core.files import File
 from ...models import Category, Question
 
 
-logger = logging.getLogger('piodyssey.base_scraper')
-
 class BaseScraper:
     BASE_URL = None
     SLUG = 'base_scraper'
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers['User-agent'] = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+
 
     @property
     def logger(self):
@@ -33,9 +37,12 @@ class BaseScraper:
         # yield (slug, question, image path, {'A': 'response', …}, 'ACD', explanation, image path)
         raise NotImplementedError
 
-    def soup(self, path):
-        with urllib.request.urlopen(self.BASE_URL + '/' + path) as f:
-            return bs4.BeautifulSoup(f.read())
+    def request(self, path, **kwargs):
+        method = 'POST' if 'data' in kwargs else 'GET'
+        return self.session.request(method, self.BASE_URL + '/' + path, **kwargs)
+
+    def soup(self, path, **kwargs):
+        return bs4.BeautifulSoup(self.request(path, **kwargs).text)
 
     def save_category(self, data=None, title=None, image=None):
         if title is None:
@@ -82,7 +89,5 @@ class BaseScraper:
         self.logger.info('%s %r', ('Created' if created else 'Updated'), question)
 
     def set_image(self, model, image_path, image_attr='image'):
-        filename, _ = urllib.request.urlretrieve(self.BASE_URL + '/' + image_path)
         save_to = str(uuid.uuid4()) + os.path.splitext(image_path)[1]
-        with open(filename, 'rb') as f:
-            getattr(model, image_attr).save(save_to, File(f))
+        getattr(model, image_attr).save(save_to, File(io.BytesIO(self.request(image_path).content)))

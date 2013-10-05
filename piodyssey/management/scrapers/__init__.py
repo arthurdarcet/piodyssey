@@ -1,0 +1,2 @@
+from .cercle_nautique import CercleNautiqueScraper
+from .loisirs_nautic import LoisirsNauticScraper

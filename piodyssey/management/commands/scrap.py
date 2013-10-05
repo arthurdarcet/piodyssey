@@ -2,7 +2,7 @@ import optparse
 
 from django.core.management.base import BaseCommand, CommandError
 
-from ..scrapers import loisirs_nautic
+from .. import scrapers
 
 
 class Command(BaseCommand):
@@ -17,7 +17,8 @@ class Command(BaseCommand):
         )
 
     SCRAPERS = {
-        'loisirs_nautic': loisirs_nautic.LoisirNauticScraper,
+        'loisirs_nautic': scrapers.LoisirsNauticScraper,
+        'cercle_nautique': scrapers.CercleNautiqueScraper,
     }
 
     def handle(self, *args, **options):
