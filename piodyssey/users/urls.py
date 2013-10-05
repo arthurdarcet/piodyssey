@@ -1,7 +1,11 @@
 from django.conf.urls import include, patterns, url
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns('piodyssey.users.views',
+    url(r'^users/list$', 'list', name='list'),
+)
+
+urlpatterns += patterns('',
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name': 'users/login.html'}, name='login'),
     url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': 'login'}),
     url(

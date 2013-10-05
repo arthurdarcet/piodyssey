@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static "lib/tablesorter/blue.css" %}">
+{% endblock %}
+
+{% block js %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.10.8/jquery.tablesorter.min.js"></script>
+    <script>
+        Piodyssey.app.start = function() {
+            $('#listing').tablesorter({
+                widgets: ['zebra'],
+                sortList: [[3,0], [2,0], [1, 0]],
+                widthFixed : true
+            });
+        };
+    </script>
+{% endblock %}
+
+{% block title %}Annuaire{% endblock %}
+
+{% block content %}
+    <table id="listing" class="tablesorter">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Équipe</th>
+                <th>Email</th>
+                <th style="min-width: 110px;">Téléphone</th>
+                <th>Facebook</th>
+                <th>Date de naissance</th>
+                <th>Moyen de contact</th>
+                <th>Téléphone parents</th>
+                <th>Email parents</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.team|default:"—" }}</td>
+                <td>
+                    {% if user.email %}<a href="mailto:{{ user.email }}">{{ user.email }}</a>
+                    {% else %}−{% endif %}
+                </td>
+                <td>{{ user.phone|default:"–" }}</td>
+                <td>{{ user.facebook|default:"–" }}</td>
+                <td>{{ user.date_of_birth|default:"−" }}</td>
+                <td>{{ user.contact_method|default:"−" }}</td>
+                <td>{{ user.parents_phone|default:"−" }}</td>
+                <td>{{ user.parents_email|default:"−" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
