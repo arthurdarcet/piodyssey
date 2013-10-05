@@ -1,10 +1,9 @@
 Piodyssey.Collections.Questions = Backbone.Collection.extend({
     model: Piodyssey.Models.Question,
-    _session: null,
     _loading_session: false,
 
     with_session: function(cb) {
-        if (this._session) return cb(this._session);
+        if (Piodyssey.session) return cb(Piodyssey.session);
         if (this._loading_session) return false;
         this._loading_session = true;
         $.post(
@@ -15,14 +14,9 @@ Piodyssey.Collections.Questions = Backbone.Collection.extend({
                 }))
             }
         ).done(_.bind(function(data) {
-            cb(this._session = new Piodyssey.Models.Session(data, {parse: true}));
+            cb(Piodyssey.session = new Piodyssey.Models.Session(data, {parse: true}));
         }, this)).always(_.bind(function() {
             this._loading_session = false;
         }, this));
-    },
-
-    extract_answers: function() {
-        return ;
-        return {};
     }
 });

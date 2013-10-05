@@ -1,0 +1,17 @@
+
+{% extends "layout.html" %}
+
+{% block title %}Dernière sessions{% endblock %}
+
+{% block content %}
+
+<ul class="list-unstyled">
+    {% for session in sessions %}
+        <li class="alert alert-sm alert-{{ session.css_status }}">
+            <a href="{{ session.get_absolute_url }}"><b>{{ session.nb_errors }} fautes</b> / {{ session.nb_questions }} questions</a>
+            &nbsp; par &nbsp;
+            <a href="{{ session.user.get_absolute_url }}">{{ session.user.get_short_name }}</a>
+        </li>
+    {% endfor %}
+<ul>
+{% endblock %}

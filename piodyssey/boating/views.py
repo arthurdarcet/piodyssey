@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils.html import mark_safe
 
-from .models import Question
+from .models import Question, Session
 
 
 @login_required
@@ -20,3 +20,13 @@ def _render(request, questions, limit):
     return render(request, 'boating/exam.html', {
         'questions': mark_safe(json.dumps(questions)),
     })
+
+@login_required
+def last_sessions(request, limit):
+    return render(request, 'boating/last_sessions.html', {
+        'sessions': Session.objects.order_by('-created_at')[:int(limit or 20)],
+    })
+
+@login_required
+def session(request):
+    return ''

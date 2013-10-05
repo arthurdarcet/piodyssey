@@ -16,8 +16,26 @@ class Session(models.Model):
     category = models.ForeignKey(Category, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def nb_errors(self):
+        return len(list(a for a in self.answers.all() if not a.is_right))
+
+    @property
+    def nb_questions(self):
+        return len(self.answers.all())
+
+    @property
+    def css_status(self):
+        print(self.nb_errors/self.nb_questions)
+        if self.nb_errors / self.nb_questions <= 3/35:
+            return 'success'
+        elif self.nb_errors / self.nb_questions <= 5/35:
+            return 'warning'
+        else:
+            return 'danger'
+
     def get_absolute_url(self):
-        return reverse('api:session', args=[str(self.id)])
+        return reverse('boating:api:session', args=[str(self.id)])
 
     def as_dict(self):
         return {

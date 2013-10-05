@@ -16,12 +16,16 @@ Piodyssey.Views.Exam = Backbone.View.extend({
                 this.render();
             }, this)
         });
-        this.response = new Piodyssey.Views.Session({
+        this.session_view = new Piodyssey.Views.Session({
             el: this.$('#exam')
         });
-        this.response.on('go-to-question', _.bind(function(question_id) {
+        this.session_view.on('go-to-question', _.bind(function(question_id) {
             this.go_to_question(this.collection.get(question_id));
         }, this));
+        if (Piodyssey.session) {
+            this.session_view.model = Piodyssey.session;
+            this.current_question_id = NaN;
+        }
     },
 
     render: function() {
@@ -43,8 +47,8 @@ Piodyssey.Views.Exam = Backbone.View.extend({
             this.$('#spinner').removeClass('hide');
             this.current_question_id = NaN;
             this.collection.with_session(_.bind(function(session) {
-                Piodyssey.session = this.response.model = session;
-                this.response.render();
+                this.session_view.model = session;
+                this.session_view.render();
                 this.$('#spinner').addClass('hide');
                 this.$('#exam').show();
             }, this));

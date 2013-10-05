@@ -70,3 +70,8 @@ h1 small {
 .result-score {
     font-size: larger;
 }
+
+.alert-sm {
+    margin-bottom: 10px;
+    padding: 7px 12px 7px 12px;
+}

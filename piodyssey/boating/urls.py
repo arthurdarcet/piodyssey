@@ -8,6 +8,8 @@ api_patterns = patterns('piodyssey.boating.api',
 urlpatterns = patterns('piodyssey.boating.views',
     url(r'^$', 'index'),
     url(r'^random(?:/(?P<limit>[0-9]+))?$', 'random', name='random'),
+    url(r'^sessions/(?P<id>[0-9]+)$', 'session', name='session'),
+    url(r'^sessions/last(?:/(?P<limit>[0-9]+))?$', 'last_sessions', name='last-sessions'),
 )
 
 urlpatterns += patterns('',
