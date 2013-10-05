@@ -62,7 +62,10 @@ resetdb:
 	@rm -f local.db
 	@$(MANAGE_PY) syncdb
 
-.PHONY: resetdb test
+smtp:
+	@python -m smtpd -n -c DebuggingServer localhost:1025
+
+.PHONY: resetdb test smtp
 
 
 # Misc
