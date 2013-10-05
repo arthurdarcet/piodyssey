@@ -1,8 +1,10 @@
 from django.core.urlresolvers import reverse
+from django.contrib import admin
 from django.db import models
 
 from piodyssey.users.models import User
 
+from .category import Category
 from .question import Question
 
 
@@ -11,7 +13,8 @@ class Session(models.Model):
         app_label = 'boating'
 
     user = models.ForeignKey(User)
-    date = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
         return reverse('api:session', args=[str(self.id)])
@@ -19,7 +22,7 @@ class Session(models.Model):
     def as_dict(self):
         return {
             'user': self.user.id,
-            'date': str(self.date),
+            'created_at': str(self.created_at),
             'answers': [answer.as_dict() for answer in self.answers.all()]
         }
 
@@ -42,3 +45,13 @@ class Answer(models.Model):
             'answer': self.answer,
             'is_right': self.is_right,
         }
+
+    def __str__(self):
+        '{} ({}), {}'.format(self.answer, 'Right' if self.is_right else 'Wrong', self.question)
+
+
+class SessionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'category', 'created_at')
+
+
+admin.site.register(Session, SessionAdmin)

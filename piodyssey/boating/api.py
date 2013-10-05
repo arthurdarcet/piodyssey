@@ -5,7 +5,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Answer, Question, Session
+from .models import Answer, Category, Question, Session
 
 
 class JsonResponse(HttpResponse):
@@ -16,7 +16,11 @@ class JsonResponse(HttpResponse):
 
 
 def save_session(request):
-    session = Session.objects.create(user=request.user)
+    category = None
+    if 'category' in request.POST:
+        category = Category.objects.get(id=request.POST['category'])
+
+    session = Session.objects.create(user=request.user, category=category)
     data = json.loads(request.POST.get('answers', '[]'))
     for question_pk, answer in data:
         Answer.objects.create(
