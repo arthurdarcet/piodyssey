@@ -4,15 +4,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from piodyssey.boating import urls as boating_urls
-from piodyssey.users import urls as users_urls
-
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'', include(boating_urls)),
-    url(r'', include(users_urls)),
+    url(r'', include('piodyssey.boating.urls', namespace='boating')),
+    url(r'', include('piodyssey.users.urls', namespace='users')),
 )
 
 urlpatterns += patterns('',

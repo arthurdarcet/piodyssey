@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Définir un nouveau mot de passe{% endblock %}
+
+{% block content %}
+    {% if validlink %}
+        {% if form.errors.new_password2 %}
+            <div class="alert alert-dismissable alert-{% if message.tags %}{{ message.tags }}{% else %}danger{% endif %}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ form.errors.new_password2|join:', ' }}
+            </div>
+        {% endif %}
+        <form method="post" class="megatron" action="">
+            <input type="password" name="new_password1" placeholder="Nouveau mot de passe">
+            <input type="password" name="new_password2" placeholder="Confirmer le mot de passe">
+            <input type="submit" value="Changer mon mot de passe" class="btn btn-primary btn-lg" />
+            {% csrf_token %}
+        </form>
+    {% else %}
+        <p>Lien invalide, veuillez renouveller la demande de réinitialisation.</p>
+    {% endif %}
+{% endblock %}

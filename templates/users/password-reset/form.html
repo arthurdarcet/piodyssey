@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Réinitialiser un mot de passe{% endblock %}
+
+{% block content %}
+    {% if form.errors.email %}
+        <div class="alert alert-dismissable alert-{% if message.tags %}{{ message.tags }}{% else %}danger{% endif %}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ form.errors.email|join:', ' }}
+        </div>
+    {% endif %}
+    <form method="post" class="megatron" action="">
+        <input type="text" name="email" placeholder="Email">
+        <input type="submit" value="Réinitialiser mon mot de passe" class="btn btn-primary btn-lg" />
+        {% csrf_token %}
+    </form>
+{% endblock %}

@@ -2,6 +2,8 @@ import os
 
 SRC_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
+SITE_NAME = 'Piodyssey'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

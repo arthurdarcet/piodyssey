@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}Réinitialiser un mot de passe{% endblock %}
+
+{% block content %}
+
+<p>Votre mot de passe a bien été modifié.</p>
+<p><a href="{% url "users:login" %}">Me connecter</a></p>
+
+{% endblock %}

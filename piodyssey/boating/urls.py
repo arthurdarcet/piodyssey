@@ -7,7 +7,7 @@ api_patterns = patterns('piodyssey.boating.api',
 
 urlpatterns = patterns('piodyssey.boating.views',
     url(r'^$', 'index'),
-    url(r'^random(?:/(?P<limit>[0-9]+))?$', 'random', name='random-exam'),
+    url(r'^random(?:/(?P<limit>[0-9]+))?$', 'random', name='random'),
 )
 
 urlpatterns += patterns('',

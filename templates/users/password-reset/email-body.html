@@ -1,0 +1,8 @@
+Vous avez demandé une réintialisation de votre mot de passe pour le {{ site_name }}.
+
+Veuillez suivre ce lien pour choisir un nouveau mot de passe :
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{% url "users:password-reset-confirm" uid token %}
+{% endblock %}
+
+À bientôt sur {{ site_name }} !

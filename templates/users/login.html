@@ -9,7 +9,7 @@
     </div>
 {% endif %}
 
-<form method="post" class="megatron" action="{% url 'django.contrib.auth.views.login' %}">
+<form method="post" class="megatron" action="{% url 'users:login' %}">
     <input type="text" name="username" placeholder="Email">
     <input type="password" name="password" placeholder="Password">
     <input type="submit" value="Login" class="btn btn-primary btn-lg" />
