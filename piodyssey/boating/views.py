@@ -29,7 +29,7 @@ def last_sessions(request, limit):
 
 @login_required
 def session(request, id):
-    session = Session.objects.get(pk=id)
+    session = Session.objects.get_object_or_404(pk=id)
     return _render(
         request,
         [answer.question for answer in session.answers.all()],
