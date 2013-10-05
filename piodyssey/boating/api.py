@@ -28,7 +28,7 @@ def save_session(request):
             answer=answer,
             session=session,
         )
-    return redirect(session)
+    return redirect(session.get_api_url())
 
 def get_session(request, session_id):
     session = Session.objects.get(id=session_id)

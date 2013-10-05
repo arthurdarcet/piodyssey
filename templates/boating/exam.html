@@ -31,7 +31,7 @@
     <script>
         Piodyssey.data = {{ questions }};
         {% if session %}
-        Piodyssey.session = {{ session }};
+        Piodyssey.session = new Piodyssey.Models.Session({{ session }}, {parse: true});
         {% endif %}
         Piodyssey.Templates.question = Hogan.compile($('#tpl-question').html());
         Piodyssey.Templates.session = Hogan.compile($('#tpl-session').html());

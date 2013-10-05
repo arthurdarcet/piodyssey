@@ -29,30 +29,33 @@ Piodyssey.Views.Exam = Backbone.View.extend({
     },
 
     render: function() {
-        if (this.current_question_id < this.collection.size())
+        if (this.current_question_id < this.collection.size()) {
             this.$('.subtitle').html('Question ' + (this.current_question_id + 1) + ' sur ' + this.collection.size());
-        else
+            this.go_to_question(this.collection.at(this.current_question_id));
+        }
+        else {
             this.$('.subtitle').html('Résultats');
-        this.go_to_question(this.collection.at(this.current_question_id));
+            if (!this.session_view.model) {
+                this.$('#exam').hide();
+                this.$('#spinner').removeClass('hide');
+                this.current_question_id = NaN;
+                this.collection.with_session(_.bind(function(session) {
+                    this.session_view.model = session;
+                    this.session_view.render();
+                    this.$('#spinner').addClass('hide');
+                    this.$('#exam').show();
+                }, this));
+            }
+            else {
+                this.session_view.render();
+            }
+        }
     },
 
     go_to_question: function(question) {
         this.finnished = _.isNaN(this.current_question_id);
-        if (question) {
-            this.question.set_model(question);
-            this.question.render();
-        }
-        else {
-            this.$('#exam').hide();
-            this.$('#spinner').removeClass('hide');
-            this.current_question_id = NaN;
-            this.collection.with_session(_.bind(function(session) {
-                this.session_view.model = session;
-                this.session_view.render();
-                this.$('#spinner').addClass('hide');
-                this.$('#exam').show();
-            }, this));
-        }
+        this.question.set_model(question);
+        this.question.render();
     },
 
     click_change_mode: function(evt) {

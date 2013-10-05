@@ -13,12 +13,12 @@ def index(request):
 
 @login_required
 def random(request, limit):
-    return _render(request, Question.objects.order_by('?'), limit)
+    return _render(request, Question.objects.order_by('?')[:int(limit or 35)])
 
-def _render(request, questions, limit):
-    questions = [q.as_dict() for q in questions[:int(limit or 35)]]
+def _render(request, questions, session=None):
     return render(request, 'boating/exam.html', {
-        'questions': mark_safe(json.dumps(questions)),
+        'questions': mark_safe(json.dumps([q.as_dict() for q in questions])),
+        'session': mark_safe(json.dumps(session.as_dict())) if session is not None else None,
     })
 
 @login_required
@@ -28,5 +28,10 @@ def last_sessions(request, limit):
     })
 
 @login_required
-def session(request):
-    return ''
+def session(request, id):
+    session = Session.objects.get(pk=id)
+    return _render(
+        request,
+        [answer.question for answer in session.answers.all()],
+        session,
+    )

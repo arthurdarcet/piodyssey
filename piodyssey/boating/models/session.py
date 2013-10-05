@@ -35,6 +35,9 @@ class Session(models.Model):
             return 'danger'
 
     def get_absolute_url(self):
+        return reverse('boating:session', args=[str(self.id)])
+
+    def get_api_url(self):
         return reverse('boating:api:session', args=[str(self.id)])
 
     def as_dict(self):
