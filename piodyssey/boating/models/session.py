@@ -1,13 +1,14 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 
+from piodyssey.users.models import User
+
 from .question import Question
-from .user import User
 
 
 class Session(models.Model):
     class Meta:
-        app_label = 'piodyssey'
+        app_label = 'boating'
 
     user = models.ForeignKey(User)
     date = models.DateTimeField(auto_now_add=True)
@@ -25,7 +26,7 @@ class Session(models.Model):
 
 class Answer(models.Model):
     class Meta:
-        app_label = 'piodyssey'
+        app_label = 'boating'
 
     question = models.ForeignKey(Question)
     answer = models.CharField(max_length=4)

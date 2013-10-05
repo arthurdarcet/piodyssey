@@ -18,10 +18,9 @@ class BaseScraper:
         self.session = requests.Session()
         self.session.headers['User-agent'] = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 
-
     @property
     def logger(self):
-        return logging.getLogger('scrapers.' + self.SLUG)
+        return logging.getLogger('piodyssey.scrapers.' + self.SLUG)
 
     def fire(self):
         for category in self.categories():

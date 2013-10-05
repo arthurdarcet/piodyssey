@@ -4,20 +4,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from piodyssey.boating import urls as boating_urls
+
 
 admin.autodiscover()
 
-api_patterns = patterns('piodyssey.api',
-    url(r'^session(?:/(?P<session_id>[0-9]+))?$', 'session', name='session'),
-)
-
-urlpatterns = patterns('piodyssey.views',
-    url(r'^$', 'index'),
-    url(r'^random(?:/(?P<limit>[0-9]+))?$', 'random', name='random-exam'),
-)
-
-urlpatterns += patterns('',
-    url(r'^api/', include(api_patterns, namespace='api')),
+urlpatterns = patterns('piodyssey.boating',
+    url(r'', include(boating_urls)),
 )
 
 urlpatterns += patterns('',

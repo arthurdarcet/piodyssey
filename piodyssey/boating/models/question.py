@@ -6,7 +6,7 @@ from . import Category
 
 class Question(models.Model):
     class Meta:
-        app_label = 'piodyssey'
+        app_label = 'boating'
         unique_together = (
             ('slug', 'scraper'),
         )
@@ -41,7 +41,7 @@ class Question(models.Model):
         if 'D' in responses: self._responseD = responses['D']
 
     def __str__(self):
-        return '{!r} {!r} in {} from {!r}'.format(self.slug, self.question[:20], self.category, self.scraper)
+        return '{} {!r} in {!r} from {}'.format(self.slug, self.question[:20], self.category.title[:10], self.scraper)
 
     def as_dict(self):
         return {

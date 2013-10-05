@@ -4,7 +4,7 @@ from django.contrib import admin
 
 class Category(models.Model):
     class Meta:
-        app_label = 'piodyssey'
+        app_label = 'boating'
         verbose_name_plural = 'categories'
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to='categories')
@@ -15,4 +15,5 @@ class Category(models.Model):
 
 class CategoryAdmin(admin.ModelAdmin):
     pass
+
 admin.site.register(Category, CategoryAdmin)

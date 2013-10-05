@@ -63,10 +63,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'piodyssey',
+    'piodyssey.users',
+    'piodyssey.boating',
 )
 
-AUTH_USER_MODEL = 'piodyssey.User'
+AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/login'
 LOGIN_EXEMPT_URLS = ['password/request', 'password/do', 'static/']
 LOGIN_REDIRECT_URL = '/'
