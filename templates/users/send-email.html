@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}Envoyer un email{% endblock %}
+
+{% block content %}
+    {% if success %}
+        <div class="alert alert-success">Votre email a été envoyé à <strong>{{ nb_targets }} destinataires</strong></div>
+    {% else %}
+        {% if error %}
+            <div class="alert alert-danger"><strong>Erreur :</strong> {{ error }}</div>
+        {% endif %}
+        <div class="alert alert-info">Cet email sera envoyé à <strong>{{ nb_targets }} destinataires</strong></div>
+
+        <form method="post" action="" class="email-form megatron">
+            <input type="text" placeholder="Sujet" name="subject" class="small" value="{{ subject }}">
+            <textarea name="body" rows="15">{{ body }}</textarea>
+            <input type="submit" value="Envoyer" class="btn btn-primary btn-lg" />
+            {% csrf_token %}
+        </form>
+    {% endif %}
+{% endblock %}

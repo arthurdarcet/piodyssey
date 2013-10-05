@@ -2,19 +2,23 @@ form.megatron {
     max-width: 680px;
     margin: 40px auto 0 auto;
 }
-
 form.megatron input {
     display: block;
 }
-
 form.megatron input:not([type=submit]) {
-    width: 100%;
     font-size: 45px;
     font-weight: 700;
-    margin-bottom: 20px;
     outline: none;
     border: none;
+}
+form.megatron input:not([type=submit]), form.megatron textarea {
+    width: 100%;
+    margin-bottom: 20px;
     padding: 0;
+}
+form.megatron input.small {
+    font-size: 30px;
+    font-weight: 500;
 }
 
 h1 small {

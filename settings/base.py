@@ -83,6 +83,7 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'piodyssey@darcet.fr'
+EMAILS_COPY_RECIPIENT = ('email@domain.tld', )
 EMAIL_SUBJECT_PREFIX = '[Piodyssey admin] '
 
 LOGGING = {
