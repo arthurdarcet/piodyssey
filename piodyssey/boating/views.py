@@ -8,10 +8,6 @@ from .models import Question, Session
 
 
 @login_required
-def index(request):
-    return render(request, 'index.html')
-
-@login_required
 def random(request, limit):
     return _render(request, Question.objects.order_by('?')[:int(limit or 35)])
 

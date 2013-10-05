@@ -8,6 +8,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'piodyssey.views.index', name='index'),
     url(r'', include('piodyssey.boating.urls', namespace='boating')),
     url(r'', include('piodyssey.users.urls', namespace='users')),
 )

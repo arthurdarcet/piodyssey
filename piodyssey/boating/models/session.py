@@ -25,11 +25,14 @@ class Session(models.Model):
         return len(self.answers.all())
 
     @property
+    def score(self):
+        return self.nb_errors / self.nb_questions
+
+    @property
     def css_status(self):
-        print(self.nb_errors/self.nb_questions)
-        if self.nb_errors / self.nb_questions <= 3/35:
+        if self.score <= 3/35:
             return 'success'
-        elif self.nb_errors / self.nb_questions <= 5/35:
+        elif self.score <= 5/35:
             return 'warning'
         else:
             return 'danger'

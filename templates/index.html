@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    {% if show_graph %}
+        <canvas id="sessions-graph" width=""></canvas>
+        <hr>
+    {% endif %}
+
     <h3><a href="{% url "boating:random" %}">Session d'examen</a></h3>
     <h3><a href="{% url "boating:last-sessions" %}">Dernières sessions</a></h3>
     <hr>
@@ -13,4 +18,33 @@
         <hr>
         <h3><a href="{% url "admin:index" %}">Administration</a></h3>
     {% endif %}
+{% endblock %}
+
+{% block js %}
+{% if show_graph %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
+    <script>
+        Piodyssey.data = {{ my_sessions }};
+        Piodyssey.app.start = function() {
+            var canvas = $('#sessions-graph');
+            var ctx = canvas[0].getContext('2d');
+            canvas.attr('width', $('.container').css('width').slice(0, -2))
+            Piodyssey.chart = new Chart(ctx);
+            Piodyssey.chart.Line({
+                labels: _.range(Piodyssey.data.length),
+                datasets: [{
+                    fillColor: 'rgba(151, 187, 205, 0.5)',
+                    strokeColor: 'rgba(151, 187, 205, 1)',
+                    pointColor: 'rgba(151, 187, 205, 1)',
+                    pointStrokeColor: 'white',
+                    data: _.map(Piodyssey.data, function(item) {
+                        return item * 100;
+                    })
+                }]
+            }, {
+                animation: false
+            });
+        };
+    </script>
+{% endif %}
 {% endblock %}
