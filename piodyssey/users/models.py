@@ -75,8 +75,8 @@ class User(AbstractBaseUser):
 
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput, required=False)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput, required=False)
+    password1 = forms.CharField(label='New password', widget=forms.PasswordInput, required=False)
+    password2 = forms.CharField(label='Confirmation', widget=forms.PasswordInput, required=False)
 
     class Meta:
         model = User
