@@ -16,6 +16,11 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for key in self.fields:
+            self.fields[key].required = False
+
     def clean_password(self):
         return self.initial.get('password', None)
 
