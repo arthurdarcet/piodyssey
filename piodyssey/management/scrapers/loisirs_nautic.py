@@ -3,7 +3,7 @@ import bs4
 from . import base_scraper
 
 
-class LoisirNauticScraper(base_scraper.BaseScraper):
+class LoisirsNauticScraper(base_scraper.BaseScraper):
     BASE_URL = 'http://www.loisirs-nautic.fr/'
     SLUG = 'loisirs-nautic'
 
@@ -12,6 +12,7 @@ class LoisirNauticScraper(base_scraper.BaseScraper):
         for tr in soup.find(id='tabs-1').find_all('table')[1].children:
             if isinstance(tr, bs4.Tag):
                 links = tr.find_all('a')
+                print(links)
                 yield (links[0]['href'], links[1].text, tr.find('img')['src'])
 
     def _questions_ids(self, category):
@@ -24,8 +25,7 @@ class LoisirNauticScraper(base_scraper.BaseScraper):
     def questions(self, category):
         for qid in self._questions_ids(category):
             soup = self.soup('pgm/affiche_correction.php?id=' + qid)
-
-            question = soup.find(**{'class': 'quest'})
+            question = soup.find(**{'class': 'quest'}).find('table')
             question_text = question.find('h6').text.strip()
             img = question.find('img')
             question_image = img['src'] if img is not None else None

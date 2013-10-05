@@ -13,7 +13,11 @@ logger = logging.getLogger('piodyssey.base_scraper')
 
 class BaseScraper:
     BASE_URL = None
-    SLUG = None
+    SLUG = 'base_scraper'
+
+    @property
+    def logger(self):
+        return logging.getLogger('scrapers.' + self.SLUG)
 
     def fire(self):
         for category in self.categories():
@@ -49,7 +53,7 @@ class BaseScraper:
 
         category.save()
 
-        logger.info('%s %r', ('Created' if created else 'Updated'), category)
+        self.logger.info('%s %r', ('Created' if created else 'Updated'), category)
         return data, category
 
     def save_question(self, slug, question_text, image, responses, solution=None, explanation=None, explanation_image=None, category=None):
@@ -75,7 +79,7 @@ class BaseScraper:
             self.set_image(question, explanation_image, 'explanation_image')
 
         question.save()
-        logger.info('%s %r', ('Created' if created else 'Updated'), question)
+        self.logger.info('%s %r', ('Created' if created else 'Updated'), question)
 
     def set_image(self, model, image_path, image_attr='image'):
         filename, _ = urllib.request.urlretrieve(self.BASE_URL + '/' + image_path)
