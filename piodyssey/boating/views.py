@@ -17,6 +17,6 @@ def random(request, limit):
 
 def _render(request, questions, limit):
     questions = [q.as_dict() for q in questions[:int(limit or 35)]]
-    return render(request, 'exam.html', {
+    return render(request, 'boating/exam.html', {
         'questions': mark_safe(json.dumps(questions)),
     })

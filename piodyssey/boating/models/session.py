@@ -47,11 +47,18 @@ class Answer(models.Model):
         }
 
     def __str__(self):
-        '{} ({}), {}'.format(self.answer, 'Right' if self.is_right else 'Wrong', self.question)
+        return '{} ({}), {}'.format(self.answer, 'Right' if self.is_right else 'Wrong', self.question)
+
+
+class AnswerAdminInline(admin.StackedInline):
+    model = Answer
+    template = 'admin/inline-answers.html'
+    extra = 0
 
 
 class SessionAdmin(admin.ModelAdmin):
     list_display = ('user', 'category', 'created_at')
+    inlines = (AnswerAdminInline, )
 
 
 admin.site.register(Session, SessionAdmin)
