@@ -45,4 +45,3 @@ class LoisirsNauticScraper(base_scraper.BaseScraper):
             explanation_image = images[1]['src'] if len(images) > 1 else None
 
             yield (qid, question_text, question_image, responses, solutions, explanation_text, explanation_image)
-
