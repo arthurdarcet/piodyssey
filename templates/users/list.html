@@ -11,7 +11,7 @@
         Piodyssey.app.start = function() {
             $('#listing').tablesorter({
                 widgets: ['zebra'],
-                sortList: [[3,0], [2,0], [1, 0]],
+                sortList: [[2,0], [1,0], [0, 0]],
                 widthFixed : true
             });
         };
@@ -30,10 +30,7 @@
                 <th>Email</th>
                 <th style="min-width: 110px;">Téléphone</th>
                 <th>Facebook</th>
-                <th>Date de naissance</th>
                 <th>Moyen de contact</th>
-                <th>Téléphone parents</th>
-                <th>Email parents</th>
             </tr>
         </thead>
         <tbody>
@@ -48,10 +45,7 @@
                 </td>
                 <td>{{ user.phone|default:"–" }}</td>
                 <td>{{ user.facebook|default:"–" }}</td>
-                <td>{{ user.date_of_birth|default:"−" }}</td>
                 <td>{{ user.contact_method|default:"−" }}</td>
-                <td>{{ user.parents_phone|default:"−" }}</td>
-                <td>{{ user.parents_email|default:"−" }}</td>
             </tr>
             {% endfor %}
         </tbody>
