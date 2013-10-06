@@ -1,7 +1,7 @@
 import json
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.html import mark_safe
 
 from .models import Question, Session
@@ -25,7 +25,7 @@ def last_sessions(request, limit):
 
 @login_required
 def session(request, id):
-    session = Session.objects.get_object_or_404(pk=id)
+    session = get_object_or_404(Session, pk=id)
     return _render(
         request,
         [answer.question for answer in session.answers.all()],
