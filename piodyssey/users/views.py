@@ -18,7 +18,7 @@ def send_mail(request, target):
         target = 'pionniers'
     if target != 'pionniers' and not request.user.is_staff:
         raise Http404
-    emails = list(settings.EMAILS_COPY_RECIPIENT)
+    emails = list(settings.EMAIL_COPY_RECIPIENT)
     if target == 'pionniers' or target == 'all':
         emails += [user.email for user in User.objects.all()]
     if target == 'parents' or target == 'all':

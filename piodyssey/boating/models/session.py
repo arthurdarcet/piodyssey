@@ -59,7 +59,7 @@ class Answer(models.Model):
 
     @property
     def is_right(self):
-        return self.question.solution == self.answer
+        return sorted(self.question.solution) == sorted(self.answer)
 
     def as_dict(self):
         return {

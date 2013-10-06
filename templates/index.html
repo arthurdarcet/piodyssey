@@ -38,7 +38,7 @@
                     pointColor: 'rgba(151, 187, 205, 1)',
                     pointStrokeColor: 'white',
                     data: _.map(Piodyssey.data, function(item) {
-                        return item * 100;
+                        return (1 - item) * 100;
                     })
                 }]
             }, {
